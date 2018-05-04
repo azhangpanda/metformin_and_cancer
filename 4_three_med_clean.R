@@ -1,3 +1,5 @@
+##clean medication data. difficulty: people have different medication and combination at different time 
+
 #read in package
 require(readr)
 
