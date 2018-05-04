@@ -1,0 +1,38 @@
+---
+title: "table1"
+author: "Aiyi Zhang"
+date: "November 29, 2017"
+output:
+  word_document: default
+  pdf_document: default
+  html_document: default
+---
+```{r setup, include=FALSE}
+require(arsenal)
+require(knitr)
+library(readr)
+setwd("~/Macabi/data_generated/method9.3")
+sample <- read_csv("~/Macabi/data_generated/method9.3/sample.csv")
+sample$X1=NULL
+```
+
+```{r, echo=F, results="asis"}
+options(width = 10000)
+labels(sample)  <- c(age="Age",
+                  SEX="Sex",
+                  deathYN="Death Status",
+                  DISEASE_GROUPUP_CD="Cancer Types")
+sample$diab[which(sample$diab==0)]="non Diabetic"
+sample$diab[which(sample$diab==1)]="Diabetic"
+sample$deathYN[which(sample$deathYN==0)]="alive"
+sample$deathYN[which(sample$deathYN==1)]="Deceased"
+sample$deathYN[which(sample$deathYN==1)]="Deceased"
+
+sample$DISEASE_GROUPUP_CD[which(sample$DISEASE_GROUPUP_CD==2000)]="Colon"
+  sample$DISEASE_GROUPUP_CD[which(sample$DISEASE_GROUPUP_CD==3000)]="Lung"
+  sample$DISEASE_GROUPUP_CD[which(sample$DISEASE_GROUPUP_CD==4000)]="Breast"
+  sample$DISEASE_GROUPUP_CD[which(sample$DISEASE_GROUPUP_CD==7000)]="Female Genital"
+  sample$DISEASE_GROUPUP_CD[which(sample$DISEASE_GROUPUP_CD==8000)]="Male Genital"
+  sample$DISEASE_GROUPUP_CD[which(sample$DISEASE_GROUPUP_CD==14000)]="Hematologic Neoplasm"
+summary(tableby(diab~age+SEX+deathYN+BMI+HBA1C+CREATININE+DISEASE_GROUPUP_CD, data=sample))
+```
