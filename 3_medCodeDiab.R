@@ -1,10 +1,11 @@
-#take into consideration of date and year
+#take into consideration of date and year and identify diab medications with medications
 #macabi data cleaning
 require(dplyr)
 require(readr)
 library(reshape2)
 require(lubridate)
 require(dplyr)
+
 #set work directory to the generated data folder
 setwd("~/Macabi/data_generated/method9.3")
 
@@ -21,9 +22,8 @@ vars=c("RANDOM_ID","medDate", "DDD","medEnd","diabMedInd" )
 #find unique entries
 diabMed_time=med[vars]
 diabMed_time1=unique(diabMed_time)
-
 diabMed=diabMed_time1
-#write.csv(diabMed_time1,"diabMed_time1.csv")
+
 
 #read in cleaned sample patient data
 sample <- read_csv("~/Macabi/data_generated/method9.3/sample.csv")
@@ -34,14 +34,7 @@ diabSample=sample[which(sample$diab==1),]
 #subset to focus on first three years of cancer diagnosis and create death within three years var
 vars=c( "RANDOM_ID","dateCancerMod", "end","deathYN" )
 diabSample1=diabSample[vars]
-# diabSample1$dateEnd3=diabSample1$dateCancerMod+365*3
-# diabSample1$deathYN=rep(0,dim(diabSample1)[1])
-# diabSample1$deathYN[which(diabSample1$dateDeathMod<=diabSample1$dateEnd3)]=1
-# diabSample1$dateDeathMod=NULL
 
-#read in cleaned medication prescription data
-#diabMed=read_csv("~/Macabi/data_generated/method7_time/diabMed_time1.csv")
-#diabMed$X1=NULL
 
 #find the RANDOM_ID in prescription data that are also in patient sample data
 diab_ppl=unique(diabMed$RANDOM_ID[which(diabMed$RANDOM_ID%in% unique(diabSample1$RANDOM_ID))])
