@@ -1,0 +1,1 @@
+In this study, I cleaned patients' clinical, demographical and prescription data from Maccabi health care and conducted survival analyses assessing the association between different diabetic treatment (metformin, insulin, and no treatment) and death for diabetic cancer patients. The data cleaning and analyses were conducted in R. 
