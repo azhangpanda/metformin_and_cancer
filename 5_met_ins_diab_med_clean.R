@@ -30,21 +30,7 @@ include_fun=function(dat_med,dat_exclude){
   }
   return(include)
 }
-# 
-# met_ins1=met_ins[which(met_ins$RANDOM_ID==7327),]
-# three1=three[9:10,]
-# include=rep("included",dim(met_ins1)[1])
-# for (i in 1: dim(met_ins1)[1]){
-#   for (j in 1: dim(three1)[1]){
-#     if(met_ins1$RANDOM_ID[i]==three1$RANDOM_ID[j]){
-#       if (met_ins1$medDate[i]>=three1$medDate[j] &
-#           met_ins1$medEnd[i]<=three1$medEnd[j]){
-#         include[i]="not included"
-#       }
-#     }
-#   }
-# }
-# met_ins1$include=include
+
 
 met_ins$include=include_fun(met_ins,three)
 met_ins1=met_ins[which(met_ins$include=="included"),]
