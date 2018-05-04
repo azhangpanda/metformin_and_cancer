@@ -1,4 +1,4 @@
-#cleaning sample data with descriptive statistics 
+#cleaning sample data and some descriptive statistics 
 
 require(readr)
 library(readxl)
@@ -13,17 +13,6 @@ setwd("~/Macabi/data_generated/method9.3")
 
 #patient data
 patients_data <- read_csv("~/Macabi/Macabi_raw/patients_data.csv")
-
-# #medication data
-# med <- read_csv("~/Macabi/Macabi_raw/04 - Medication purchases.csv")
-# 
-# #medication code
-# med_code <- read_excel("~/Macabi/Macabi_raw/04A - Medication codes description (mariela codes) (1).xls")
-
-#clean up confounding values
-
-
-#patients_data$ANTIDIABETIC_DRUGS[patients_data$ANTIDIABETIC_DRUGS=="NULL"]=NA
 
 #if having diabetes or not
 patients_data$diab=rep(1, dim(patients_data)[1])
@@ -50,14 +39,6 @@ patients_data$dateDiabMod=diab_date
 patients_data$BIRTH_YR=as.numeric(patients_data$BIRTH_YR)
 patients_data$age=as.numeric(substr(patients_data$DATECANCER,7,10))-patients_data$BIRTH_YR
 
-# create new variable to add in (potential) study end date to death date
-# patients_data$dateEnd=patients_data$DATEDEATH
-# patients_data$dateEnd[which(patients_data$dateEnd=="NULL")]="01/03/2013"
-# end_yr=substr(patients_data$dateEnd,7,10)
-# end_m=substr(patients_data$dateEnd,4,5)
-# end_d=substr(patients_data$dateEnd,1,2)
-# end_date=as.Date(paste(end_yr,end_m,end_d, sep="-"))
-# patients_data$dateEnd=end_date
 
 #death date
 patients_data$DATEDEATH[which(patients_data$DATEDEATH=="NULL")]=NA
