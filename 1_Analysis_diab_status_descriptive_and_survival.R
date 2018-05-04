@@ -1,9 +1,14 @@
+##descriptive statistics
+
+#read in packages
 require(readr)
 require(survival)
 library(survminer)
 
+#set work directory
 setwd("~/Macabi/data_generated/method9.3")
-#cleaned data
+
+# read cleaned data
 sample <- read_csv("~/Macabi/data_generated/method9.3/sample.csv")
 sample$X1=NULL
 
